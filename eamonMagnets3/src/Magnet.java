@@ -4,10 +4,10 @@ import java.awt.*;
 
 /*
  * Definition of class of objects used to represent bar magnets.
- * DESCRIBE YOUR CLASS HERE
+ * This class creates a magnet method as well as methods for the movement and interaction of the magnet.
  * 
- * YOUR NAME / LAB SECTION
- * DATE
+ * Eamon McNamara / Purple
+ * 5/19/20
  * 
  * Complete the implementation of these methods and add 
  * the others described in the lab handout.
@@ -17,8 +17,10 @@ public class Magnet {
     //  dimensions of magnets	
     private static final double MAGNET_WIDTH = 150;
     private static final double MAGNET_HEIGHT = 50;
-    private Pole North;
-    private Pole South;
+    
+    //  poles
+    private Pole north;
+    private Pole south;
 
     //  Box representing perimeter of magnet
     private FramedRect box;
@@ -27,8 +29,8 @@ public class Magnet {
     public Magnet(Location upperLeft, DrawingCanvas canvas) {
     	System.out.println(upperLeft.getX());
     	box = new FramedRect(upperLeft, MAGNET_WIDTH, MAGNET_HEIGHT, canvas);
-    	North = new Pole(this, upperLeft.getX()+ 10, upperLeft.getY()+ MAGNET_HEIGHT/2, "N",canvas);
-    	//South = new Pole(this, upperLeft.getX()+ MAGNET_WIDTH - 10, upperLeft.getY()+ MAGNET_HEIGHT/2, "S",canvas);
+    	north = new Pole(this, upperLeft.getX()+ 20, upperLeft.getY()+ MAGNET_HEIGHT/2, "N",canvas);
+    	south = new Pole(this, upperLeft.getX()+ MAGNET_WIDTH - 15, upperLeft.getY()+ MAGNET_HEIGHT/2, "S",canvas);
     }
 
     // returns the upper-left coordinates of the magnet
@@ -36,23 +38,49 @@ public class Magnet {
         return box.getLocation();
     }
 
+    // moves object by change in x and y
     public void move(double xoff, double yoff) {
     	box.move(xoff, yoff);
-    	North.move(xoff, yoff);
-    	South.move(xoff, yoff);
+    	north.move(xoff, yoff);
+    	south.move(xoff, yoff);
     }
 
+    // moves object to point selected
     public void moveTo(Location point) {
     	double dx = point.getX()- getLocation().getX();
     	double dy = point.getY()- getLocation().getY();
     	move(dx, dy);
     }
+    
+    // flips the poles of the magnet
+    public void flip() {
+    	double dxN = south.getX() - north.getX();
+    	double dyN = south.getY() - north.getY();
+    	double dxS = north.getX() - south.getX();
+    	double dyS = north.getY() - south.getY();
+    	
+    	north.move(dxN, dyN);
+    	south.move(dxS, dyS);
+    }
+    // returns Pole north
+    public Pole getNorth() {
+    	return north;
+    }
+    
+    // returns Pole south
+    public Pole getSouth() {
+    	return south;
+    }
+    
+    // causes poles to attract opposite poles and repel similar poles
+    public void interact(Magnet other) {
+    	north.attract(other.getSouth());
+    	north.repel(other.getNorth());
+    	south.attract(other.getNorth());
+    	south.repel(other.getSouth());
+    }
 
-    /*
-     * This should return true if the given point is within the magnet.
-     * The current implementation does not do this!!!  You must change
-     * the body of this method so that it has the proper functionality!!!
-     */
+    // tests if the given point is inside the magnet
     public boolean contains(Location point) {
         return box.contains(point);// REPLACE THIS LINE OF CODE WITH THE CORRECT IMPLEMENTATION
     }

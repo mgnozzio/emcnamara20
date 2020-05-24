@@ -21,3 +21,18 @@ using instance variables when local ones will suffice (e.g. you don't need the
 white/dark/color labels after you create them).   
 
 #### Total: 8/10
+
+### Grade for Magnets Lab
+Criterion | Points
+--- | ---
+Drawing magnets correctly at startup | 1/1
+Dragging a magnet | 1/1
+Ability to move either magnet | 1/1
+Moving a magnet to the right place when attracted | 1/1
+On attraction, moving the magnet not pointed to | 1/1
+Flipping a magnet | 1/1
+Attracting and repelling at the right times | 1/1
+No other problems | 1/1
+Style | 1/1
+
+#### Total: 9/9

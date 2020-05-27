@@ -36,3 +36,24 @@ No other problems | 1/1
 Style | 1/1
 
 #### Total: 9/9
+
+### Grade for Frogger Lab
+Criterion | Points
+--- | ---
+Frog begins in correct initial position | 1/1
+Frog jumps in response to clicks | 1/1
+Frog jumps correct distance | 1/1
+Frog dies when run over | 1/1
+Frog says "Ouch" when killed | 1/1
+Frog reincarnates on click | 0.5/1
+Lane repeatedly generates vehicles | 1/1
+Vehicles move smoothly | 1/1
+Vehicles are appropriately spaced | 1/1
+Vehicles get removed from canvas | 1/1
+EC 1:  Lanes move in opposite directions | 1/1
+EC 2:  Different cars in a single lane | 1/1
+
+Notes:  Per the lab instructions, the reincarnation should only occur if the click is 
+below the highway.  
+
+#### Total: 11.5/10
